@@ -36,7 +36,7 @@ Hi, here are some rules to carry out this story oav;
 
 ## <a name='overview'>🐱 Overview</a>
 
-This project is about visual profile for software engineer and **HAVE TO** be a **UNIVERSAL APP**, thats means work on desktop, website and mobile;<br />
+This project is about visual profile for software engineer and **HAVE TO** be a **UNIVERSAL APP**, thats means work on desktop (yo [**Electron**](https://www.electronjs.org/), website and mobile;<br />
 
 You **HAVE TO** use for all web based applicaiton at least one **PWA** native features: `offline`, `notifications`, etc.
 
@@ -53,6 +53,8 @@ Yes ! Thanks to Github API we can have any data we want, and the goal of the pro
 The website first usecase is to simply consume Github API to display data.
 
 You **MUST** do the same by using **GraphQL Github API** available [here](https://developer.github.com/v4/)
+
+The purpose here is to share maxium possible code from all clients (and server of course in case of bonuses ;p)
 
 ### = Features
 
