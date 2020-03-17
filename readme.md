@@ -1,4 +1,4 @@
-![](./assets/sourcerer.logo.png)
+![](./sourcerer.logo.png)
 
 ## Hello, Sourcerer
 
@@ -56,7 +56,7 @@ You **MUST** do the same by using **GraphQL Github API** available [here](https:
 
 Take a look at the screen below ;<br />
 Everything in red is **MANDATORY** and **ROSE** is optionnal
-![](./assets/sourcerer.majdi.png)
+![](./sourcerer.majdi.png)
 
 ## <a name='bonus'>🦄 Bonus</a>
 
