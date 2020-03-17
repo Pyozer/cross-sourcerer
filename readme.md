@@ -1,4 +1,6 @@
-![](./sourcerer.logo.png)
+<p align="center">
+  <img alt="" src="./sourcerer.logo.png"">
+</p>
 
 ## Hello, Sourcerer
 
@@ -62,9 +64,8 @@ Everything in red is **MANDATORY** and **ROSE** is optionnal
 
 I know you love that, well you can in bulk:
 
-* Add any game you have in mind :)
-* Find an other person to use your server with their client and reciprocally 🤓
-* Add user password authentication with Json Web Token 😱
+* Create a proxy server that handle Github API request (save them) and then send to the client #data :)
+* Allow a user to connect to Githu using PWA API
 * Add more visual effect #css4TheWin 🎉
 
 ## <a name='credits'>🐵 Credits</a>
