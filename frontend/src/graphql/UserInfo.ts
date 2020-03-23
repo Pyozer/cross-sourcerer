@@ -14,26 +14,51 @@ export const USER_INFO = gql`
             company
             location
             websiteUrl
-            repositories(last: 100) {
-            totalCount
-            totalDiskUsage
-            nodes {
-                name,
-                description
-                forkCount
-                diskUsage
-                updatedAt
-                stargazers {
+            following {
                 totalCount
-                }
-                object(expression: "master") {
-                ...on Commit {
-                    history {
-                    totalCount
-                    }
-                }
+            }
+            followers {
+                totalCount
+            }
+            organizations(first: 100) {
+                totalCount
+                nodes {
+                    avatarUrl
+                    description
+                    login
+                    name
                 }
             }
+            repositories(last: 100, orderBy: {field: UPDATED_AT, direction: DESC}, ownerAffiliations: [OWNER]) {
+                totalCount
+                totalDiskUsage
+                nodes {
+                    createdAt
+                    description
+                    diskUsage
+                    forkCount
+                    homepageUrl
+                    isArchived
+                    isFork
+                    name
+                    object(expression: "master") {
+                        ...on Commit {
+                            additions
+                            history {
+                                totalCount
+                            }
+                        }
+                    }
+                    primaryLanguage {
+                        color
+                        name
+                    }
+                    stargazers {
+                        totalCount
+                    }
+                    updatedAt
+                    url
+                }
             }
         }
     }

@@ -36,6 +36,12 @@ export const UserProfil = () => {
                 <h1>Total of commit: {totalOfCommits()}</h1>
                 <h1>Total of repo: {data.user.repositories.totalCount}</h1>
                 <h1>Total of disk usage: {data.user.repositories.totalDiskUsage}</h1>
+                <h1>Total of followers: {data.user.followers.totalCount}</h1>
+                <h1>Total of following: {data.user.following.totalCount}</h1>
+                <h1>Belongs to {data.user.organizations.totalCount} organization</h1>
+                <ul>
+                    {data.user.organizations.nodes?.map((org) => <li>{org.name}</li>)}
+                </ul>
             </pre>
 
             {data.user.repositories.nodes.map((repo) => <Project repo={repo} />)}
