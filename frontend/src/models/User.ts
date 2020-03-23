@@ -6,6 +6,7 @@ export interface User {
     avatarUrl: string;
     bio: string;
     company: string;
+    createdAt: string;
     followers: ObjectConnection<User>;
     following: ObjectConnection<User>;
     location: string;

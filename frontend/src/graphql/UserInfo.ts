@@ -12,6 +12,7 @@ export const USER_INFO = gql`
             avatarUrl
             bio
             company
+            createdAt
             location
             websiteUrl
             following {
@@ -29,7 +30,7 @@ export const USER_INFO = gql`
                     name
                 }
             }
-            repositories(last: 100, orderBy: {field: UPDATED_AT, direction: DESC}, ownerAffiliations: [OWNER]) {
+            repositories(first: 10, orderBy: {field: UPDATED_AT, direction: DESC}, ownerAffiliations: [OWNER]) {
                 totalCount
                 totalDiskUsage
                 nodes {
