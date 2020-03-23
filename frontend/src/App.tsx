@@ -7,7 +7,7 @@ import { Home, UserProfil, Page404 } from "./pages";
 const client = new ApolloClient({
   uri: 'https://api.github.com/graphql',
   headers: {
-    "Authorization": "Bearer YOUR_TOKEN_HERE"
+    "Authorization": `Bearer ${process.env.REACT_APP_GITHUB_TOKEN}`
   },
 });
 
