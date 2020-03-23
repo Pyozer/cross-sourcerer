@@ -2,12 +2,13 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import moment from "moment-timezone";
 import { useQuery } from '@apollo/react-hooks';
-import { Icon } from 'rsuite';
+import { Icon, Loader } from 'rsuite';
 import { Project } from "../components";
 import { UserInfoQuery } from "../models/UserInfoQuery";
 import { USER_INFO, UserInfoVar } from "../graphql/UserInfo";
 import { UserAvatar } from "../components/UserAvatar";
 import { UserInfoCard } from "../components/UserInfoCard";
+import { Centered } from "../components/Centered";
 
 export const UserProfil = () => {
     const { username } = useParams()
@@ -23,12 +24,23 @@ export const UserProfil = () => {
         return commits;
     }
 
-    if (loading) return <h1>Loading...</h1>
-    if (error) return <>
-        <h1>Error...</h1>
-        <pre>{error.graphQLErrors.map((err) => <p>{err.message}</p>)}</pre>
-    </>
-    if (!data) return <h3>No data :/</h3>
+    if (loading) return (
+        <Centered>
+            <h1>Loading <Loader size="md" /></h1>
+        </Centered>
+    )
+
+    if (error) return (
+        <Centered>
+            <h1>Error...</h1>
+            <pre>{error.graphQLErrors.map((err) => <p>{err.message}</p>)}</pre>
+        </Centered>
+    )
+    if (!data) return (
+        <Centered>
+            <h3>No data :/</h3>
+        </Centered>
+    )
 
     return (
         <div className="row" style={{ margin: '50px 0' }}>
@@ -38,9 +50,13 @@ export const UserProfil = () => {
                     <h1>{data.user.login}</h1>
                     <h3>{data.user.bio}</h3>
                     <div className="center-xs middle-xs">
-                        <Icon icon='location-arrow' style={{ marginRight: 8 }} />
-                        {data.user.location}
-                        <span style={{ marginLeft: 16, marginRight: 16 }}>|</span>
+                        {data.user.location && (
+                            <>
+                                <Icon icon='location-arrow' style={{ marginRight: 8 }} />
+                                {data.user.location}
+                                <span style={{ marginLeft: 16, marginRight: 16 }}>|</span>
+                            </>
+                        )}
                         Registered {moment(data.user.createdAt).fromNow()}
                     </div>
                 </div>

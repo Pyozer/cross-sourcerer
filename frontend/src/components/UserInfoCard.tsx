@@ -1,7 +1,7 @@
 import React from 'react'
 
 type UserInfoCard = {
-    value: string | number;
+    value: number;
     title: string;
 }
 
@@ -14,9 +14,12 @@ const CardStyle: React.CSSProperties = {
 }
 
 export const UserInfoCard = (props: UserInfoCard) => {
+    const prettyValue = (value: number): string => {
+        return value.toLocaleString();
+    }
     return (
         <div className="col-xs" style={CardStyle}>
-            <strong><span style={{ fontSize: 20 }}>{props.value}</span></strong>
+            <strong><span style={{ fontSize: 20 }}>{prettyValue(props.value)}</span></strong>
             <br />
             <span>{props.title}</span>
         </div>
