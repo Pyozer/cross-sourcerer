@@ -1,6 +1,6 @@
-import { CommitHistoryConnection } from './CommitHistoryConnection';
+import { ObjectConnection } from './ObjectConnection';
 
 export interface Commit {
     additions: number;
-    history: CommitHistoryConnection
+    history: ObjectConnection<Commit>
 }

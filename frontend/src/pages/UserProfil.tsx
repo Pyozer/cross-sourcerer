@@ -13,7 +13,7 @@ export const UserProfil = () => {
 
     const totalOfCommits = (): number => {
         let commits: number = 0;
-        data!.user.repositories.nodes.forEach((repo) => {
+        data!.user.repositories.nodes?.forEach((repo) => {
             commits += repo.object?.history?.totalCount ?? 0;
         });
         return commits;
@@ -44,7 +44,7 @@ export const UserProfil = () => {
                 </ul>
             </pre>
 
-            {data.user.repositories.nodes.map((repo) => <Project repo={repo} />)}
+            {data.user.repositories.nodes?.map((repo) => <Project repo={repo} />)}
             <pre>{JSON.stringify(data, null, 2)}</pre>
         </div>
     );

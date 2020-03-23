@@ -40,6 +40,13 @@ export const USER_INFO = gql`
                     homepageUrl
                     isArchived
                     isFork
+                    languages(first: 20, orderBy: {field: SIZE, direction: DESC}) {
+                        totalCount
+                        nodes {
+                            name
+                            color
+                        }
+                    }
                     name
                     object(expression: "master") {
                         ...on Commit {
@@ -48,10 +55,6 @@ export const USER_INFO = gql`
                                 totalCount
                             }
                         }
-                    }
-                    primaryLanguage {
-                        color
-                        name
                     }
                     stargazers {
                         totalCount

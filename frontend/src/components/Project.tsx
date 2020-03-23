@@ -13,7 +13,13 @@ export const Project = ({ repo }: ProjectProps) => {
             <h5>{repo.description}</h5>
             {repo.homepageUrl && <a href={repo.homepageUrl}>Homepage url</a>}
             <pre>{repo.object?.history && `${repo.object.history.totalCount} commits | `}{repo.stargazers.totalCount} stars {repo.isFork && "| FORK"} {repo.isArchived && "| ARCHIVED"}</pre>
-            {repo.primaryLanguage && <span style={{ color: repo.primaryLanguage?.color ?? 'black', fontWeight: 'bold' }}>{repo.primaryLanguage.name}</span>}
+            <ul>
+                {repo.languages.nodes?.map(({ color, name }) => (
+                    <li>
+                        <span style={{ color: color ?? 'black', fontWeight: 'bold' }}>{name}</span>
+                    </li>
+                ))}
+            </ul>
             <p>{repo.object?.additions} lines of code</p>
             <br />
             <small>Created: {moment(repo.createdAt).format('dddd, MMMM Do YYYY, HH:mm:ss')}</small>

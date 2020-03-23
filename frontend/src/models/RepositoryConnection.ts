@@ -1,7 +1,6 @@
+import { ObjectConnection } from './ObjectConnection';
 import { Repository } from './Repository';
 
-export interface RepositoryConnection {
-    nodes: Repository[]
-    totalCount: number;
+export interface RepositoryConnection extends ObjectConnection<Repository> {
     totalDiskUsage: number;
 }

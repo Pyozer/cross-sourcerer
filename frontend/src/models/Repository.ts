@@ -1,6 +1,7 @@
-import { Commit } from './Commit';
-import { StargazerConnection } from "./StargazerConnection";
 import { Language } from './Language';
+import { User } from './User';
+import { Commit } from './Commit';
+import { ObjectConnection } from './ObjectConnection';
 
 export interface Repository {
     createdAt: string;
@@ -12,8 +13,8 @@ export interface Repository {
     isFork: boolean;
     name: string;
     object?: Commit;
-    primaryLanguage: Language;
-    stargazers: StargazerConnection,
+    languages: ObjectConnection<Language>;
+    stargazers: ObjectConnection<User>,
     updatedAt: string;
     url: string;
 }

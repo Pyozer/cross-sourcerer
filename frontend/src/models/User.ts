@@ -1,17 +1,17 @@
-import { OrganizationConnection } from './OrganizationConnection';
+import { Organization } from './Organization';
+import { ObjectConnection } from './ObjectConnection';
 import { RepositoryConnection } from './RepositoryConnection';
-import { FollowConnection } from './FollowConnection';
 
 export interface User {
     avatarUrl: string;
     bio: string;
     company: string;
-    followers: FollowConnection;
-    following: FollowConnection;
+    followers: ObjectConnection<User>;
+    following: ObjectConnection<User>;
     location: string;
     login: string;
     name: string;
-    organizations: OrganizationConnection;
+    organizations: ObjectConnection<Organization>;
     repositories: RepositoryConnection;
     websiteUrl: string;
 }
