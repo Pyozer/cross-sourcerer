@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 import moment from 'moment-timezone';
 import { Repository } from '../models/Repository';
 import { TagGroup, Tag, Button } from 'rsuite';
@@ -15,7 +15,7 @@ const ProjectCardStyle: React.CSSProperties = {
     borderRadius: 8
 }
 
-export const Project = ({ repo }: ProjectProps) => {
+export const Project: FunctionComponent<ProjectProps> = ({ repo }) => {
     return (
         <div className="col-xs-12" style={ProjectCardStyle}>
             <h3 style={{ marginTop: 0 }}>{repo.name}</h3>
@@ -24,23 +24,21 @@ export const Project = ({ repo }: ProjectProps) => {
                 <TagGroup style={{ paddingTop: 12 }}>
                     {repo.languages.nodes.map(({ color, name }) => (
                         <Tag style={{ backgroundColor: color ?? 'white' }}>{name}</Tag>
-                    ))}
+                        ))}
                 </TagGroup>
             )}
+            {repo.homepageUrl && <Button href={repo.homepageUrl} title={repo.name} appearance="ghost" style={{ marginTop: 12 }}>Homepage</Button>}
 
             <pre>{repo.object?.history && `${repo.object.history.totalCount} commits | `}{repo.stargazers.totalCount} stars {repo.isFork && "| FORK"} {repo.isArchived && "| ARCHIVED"}</pre>
 
-            <div className="row">
-                <div className="col-xs">
+            <div className="row" style={{ margin: 0 }}>
+                <div style={{ flex: 1 }}>
                     <p>
                         Created <strong>{moment(repo.createdAt).fromNow()}</strong><br />
                         Last update <strong>{moment(repo.updatedAt).fromNow()}</strong>
                     </p>
                 </div>
-                <div className="col-xs end-xs">
-                    {repo.homepageUrl && <Button href={repo.homepageUrl} title={repo.name} appearance="ghost" style={{ marginRight: 12 }}>Homepage</Button>}
-                    <Button href={repo.url} title={repo.name} appearance="ghost">See repository</Button>
-                </div>
+                <Button href={repo.url} title={repo.name} appearance="ghost">See repository</Button>
             </div>
         </div>
     )

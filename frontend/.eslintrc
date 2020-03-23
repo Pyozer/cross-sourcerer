@@ -1,0 +1,20 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "eslint:recommended",
+        "react-app"
+    ],
+    "plugins": [
+        "@typescript-eslint",
+        "react"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 2019,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "rules": {}
+}

@@ -1,8 +1,8 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { useParams } from "react-router-dom";
 import moment from "moment-timezone";
 import { useQuery } from '@apollo/react-hooks';
-import { Icon, Loader } from 'rsuite';
+import { Icon, Loader, Avatar } from 'rsuite';
 import { Project } from "../components";
 import { UserInfoQuery } from "../models/UserInfoQuery";
 import { USER_INFO, UserInfoVar } from "../graphql/UserInfo";
@@ -10,14 +10,14 @@ import { UserAvatar } from "../components/UserAvatar";
 import { UserInfoCard } from "../components/UserInfoCard";
 import { Centered } from "../components/Centered";
 
-export const UserProfil = () => {
+export const UserProfil: FunctionComponent = () => {
     const { username } = useParams()
     const { loading, error, data } = useQuery<UserInfoQuery, UserInfoVar>(USER_INFO, {
         variables: { login: username! }
     });
 
     const totalOfCommits = (): number => {
-        let commits: number = 0;
+        let commits = 0;
         data!.user.repositories.nodes?.forEach((repo) => {
             commits += repo.object?.history?.totalCount ?? 0;
         });
@@ -63,16 +63,25 @@ export const UserProfil = () => {
                 <div className="row" style={{ marginTop: 16 }}>
                     <UserInfoCard title="Commits" value={totalOfCommits()} />
                     <UserInfoCard title="Repositories" value={data.user.repositories.totalCount} />
-                    <UserInfoCard title="Disk usage" value={data.user.repositories.totalDiskUsage} />
+                    <UserInfoCard title="Disk usage (KB)" value={data.user.repositories.totalDiskUsage} />
                     <UserInfoCard title="Followers" value={data.user.followers.totalCount} />
                     <UserInfoCard title="Following" value={data.user.following.totalCount} />
                 </div>
-                <pre>
-                    <h2>Belongs to {data.user.organizations.totalCount} organizations</h2>
-                    <ul>
-                        {data.user.organizations.nodes?.map((org) => <li>{org.name}</li>)}
-                    </ul>
-                </pre>
+                {data.user.organizations.totalCount > 0 && (
+                    <>
+                        <h2>{data.user.organizations.totalCount} organization(s)</h2>
+                        <br />
+                        {data.user.organizations.nodes?.map((org) => (
+                            <>
+                                <h5>
+                                    <Avatar src={org.avatarUrl} style={{ verticalAlign: 'middle', marginRight: 12 }} />
+                                    {org.name}
+                                </h5>
+                                <br />
+                            </>
+                        ))}
+                    </>
+                )}
 
                 <h2 style={{ marginBottom: 12 }}>Repositories</h2>
                 <div className="row">

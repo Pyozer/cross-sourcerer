@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 
 type UserInfoCard = {
     value: number;
@@ -13,7 +13,7 @@ const CardStyle: React.CSSProperties = {
     backgroundColor: "rgba(255, 255, 255, 0.05)"
 }
 
-export const UserInfoCard = (props: UserInfoCard) => {
+export const UserInfoCard: FunctionComponent<UserInfoCard> = (props) => {
     const prettyValue = (value: number): string => {
         return value.toLocaleString();
     }

@@ -14,7 +14,7 @@ export interface Repository {
     name: string;
     object?: Commit;
     languages: ObjectConnection<Language>;
-    stargazers: ObjectConnection<User>,
+    stargazers: ObjectConnection<User>;
     updatedAt: string;
     url: string;
 }

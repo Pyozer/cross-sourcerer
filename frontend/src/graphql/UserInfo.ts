@@ -30,7 +30,7 @@ export const USER_INFO = gql`
                     name
                 }
             }
-            repositories(first: 10, orderBy: {field: UPDATED_AT, direction: DESC}, ownerAffiliations: [OWNER]) {
+            repositories(first: 100, orderBy: {field: UPDATED_AT, direction: DESC}, ownerAffiliations: [OWNER]) {
                 totalCount
                 totalDiskUsage
                 nodes {

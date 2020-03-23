@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 import { AutoComplete, Loader } from 'rsuite'
 import { useHistory } from 'react-router-dom';
 import { useLazyQuery } from '@apollo/react-hooks';
@@ -10,7 +10,7 @@ import { Centered } from '../components/Centered';
 const WAIT_INTERVAL = 1000
 let timerID: NodeJS.Timeout;
 
-export const Home = () => {
+export const Home: FunctionComponent = () => {
     const history = useHistory();
     const [searchUser, { data, loading }] = useLazyQuery<SearchUserQuery, SearchUserVar>(SEARCH_USER)
 
@@ -21,7 +21,7 @@ export const Home = () => {
         })) ?? [];
     }
 
-    const handleSearch = (query: string) => {
+    const handleSearch = (query: string): void => {
         clearTimeout(timerID)
         timerID = setTimeout(() => {
             searchUser({ variables: { query } })
